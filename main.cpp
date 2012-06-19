@@ -6,7 +6,7 @@
  */
 #include "Modelo.h"
 
-Modelo _modelo;
+Modelo modelo;
 
 void setLight0() {
 	const GLfloat lPos[4] = { 100, 100, 100, 1 };
@@ -20,32 +20,39 @@ void setLight0() {
 	glLightfv(GL_LIGHT0, GL_AMBIENT, lAmb);
 }
 
-void init(void) {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glShadeModel(GL_FLAT);
+void draw() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	setLight0();
+
+	modelo.desenharModelo();
+
+	//glColor3f(1,1,1);
+	//glutil::drawTriangle(0,0,-10, _ang); // feito na primeira aula de OpenGL
+
+	// TODO
+
+	glutSwapBuffers();
 }
 
-void keyboard(unsigned char key, int x, int y) {
-	switch (key) {
-	case 's':
+void update() {
+	// TODO
 
+	//glutPostRedisplay();
+}
+
+void keyPressed(unsigned char key, int x, int y) {
+	switch (key) { // feito na primeira aula de OpenGL
+	case 'a': //ang += 10;
 		break;
-	case 'S':
-		glShadeModel(GL_SMOOTH);
-		break;
-	case 'f':
-		glRotatef(10, 0.0, 1.0, 0.0);
-		break;
-	case 'F':
-		glShadeModel(GL_FLAT);
-		break;
-	default:
+	case 'd': //ang -= 10;
 		break;
 	}
-	glutPostRedisplay();
+
+	glutPostRedisplay(); // redesenha depois de evento de teclado
 }
 
 void reshape(int w, int h) {
@@ -61,36 +68,38 @@ void reshape(int w, int h) {
 	gluPerspective(60.0, (GLfloat) w / (GLfloat) h, 1.0f, 1000.0f);
 }
 
-void display() {
-	glClear(GL_COLOR_BUFFER_BIT);
+void initGL() {
+	glShadeModel(GL_SMOOTH); // tente trocar por GL_FLAT
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // define cor para limpar fundo
+	glClearDepth(1.0f); // inicializa buffer de profundidade
+	glEnable(GL_DEPTH_TEST); //
+	glDepthFunc(GL_LEQUAL); //
+	glEnable(GL_COLOR_MATERIAL); // cor de objetos com glColor apenas
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-	//setLight0();
+	//glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 
-	_modelo.desenharModelo();
-
-	glutSwapBuffers();
-}
-
-void update() {
-	//animate_base();
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // default: GL_FILL
 }
 
 int main(int argc, char** argv) {
+	// inicializar GLUT:
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
 	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(100, 100);
-	glutCreateWindow("First Chapter − Opening an OpenGL Window");
+	glutCreateWindow("Minha janela com GLUT");
 
-	init();
-
-	glRotatef(90, 0, 1.0, 0);
-	glTranslatef(0.0, 0.5, 0.0);
-
-	glutKeyboardFunc(keyboard);
-
-	glutDisplayFunc(display);
+	// definir funcoes de callback da GLUT:
+	glutDisplayFunc(draw);
 	glutIdleFunc(update);
-	glutMainLoop();
+	glutReshapeFunc(reshape);
+	glutKeyboardFunc(keyPressed);
+
+	initGL(); // inicializar OpenGL
+
+	glutMainLoop(); // nao retorna
+
 	return 0;
 }

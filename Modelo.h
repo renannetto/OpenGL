@@ -14,12 +14,14 @@
 #define TORSO_ALT TORSO_COMP/5.0
 #define TORSO_LARG TORSO_COMP/3.0
 
-#define PATA_ART TORSO_LARG/4.0
-#define PATA_COMP TORSO_COMP/4.0
-#define PATA_ALT TORSO_ALT
-#define PATA_LARG PATA_ALT
+#define PATA_ART TORSO_LARG/10.0
+#define PATA_COMP TORSO_COMP/5.0
+#define PATA_ALT TORSO_ALT/2.0
+#define PATA_LARG PATA_ALT/2.0
 
-enum LADO{R1, R2, R3, L1, L2, L3};
+enum LADO {
+	R1, R2, R3, L1, L2, L3
+};
 
 class Modelo {
 public:
@@ -29,6 +31,9 @@ public:
 private:
 	void desenharTorso();
 	void desenharPata(LADO lado);
+	void desenharPataSuperior(LADO lado);
+	void desenharPataInferior(LADO lado);
+	float angulos[3][2];
 };
 
 #endif /* MODELO_H_ */

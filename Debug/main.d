@@ -1,3 +1,3 @@
-main.d main.o: ../main.cpp ../Modelo.h
+main.d: ../main.cpp ../Modelo.h
 
 ../Modelo.h:
