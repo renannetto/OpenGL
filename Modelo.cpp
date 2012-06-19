@@ -67,7 +67,7 @@ void Modelo::desenharPata(LADO lado) {
 	glPushMatrix();
 	glRotatef(angulos[lado][0], 0.0, 0.0, 1.0);
 	desenharPataSuperior(lado);
-	glTranslatef(0.0, -(PATA_COMP / 2 + PATA_ART), 0.0);
+	glTranslatef(0.0, -(PATA_SUP_COMP / 2 + PATA_ART), 0.0);
 	glRotatef(angulos[lado][1], 0.0, 0.0, 1.0);
 	desenharPataInferior(lado);
 	glPopMatrix();
@@ -80,9 +80,9 @@ void Modelo::desenharPataSuperior(LADO lado) {
 	glutWireSphere(1.0, 8, 8);
 	glPopMatrix();
 
-	glTranslatef(0.0, -(PATA_ALT / 2 + PATA_ART), 0.0);
+	glTranslatef(0.0, -(PATA_SUP_ALT / 2 + PATA_ART), 0.0);
 	glPushMatrix();
-	glScalef(PATA_LARG, PATA_COMP, PATA_ALT);
+	glScalef(PATA_SUP_LARG, PATA_SUP_COMP, PATA_SUP_ALT);
 	glColor3f(0.0, 0.0, 1.0);
 	glutWireCube(1.0);
 	glPopMatrix();
@@ -95,9 +95,9 @@ void Modelo::desenharPataInferior(LADO lado) {
 	glutWireSphere(1.0, 8, 8);
 	glPopMatrix();
 
-	glTranslatef(0.0, -(PATA_ALT / 2 + PATA_ART), 0.0);
+	glTranslatef(0.0, -(PATA_INF_ALT / 2 + PATA_ART), 0.0);
 	glPushMatrix();
-	glScalef(PATA_LARG, PATA_COMP, PATA_ALT);
+	glScalef(PATA_INF_LARG, PATA_INF_COMP, PATA_INF_ALT);
 	glColor3f(0.0, 0.0, 1.0);
 	glutWireCube(1.0);
 	glPopMatrix();
