@@ -39,6 +39,7 @@ void draw() {
 void update() {
 	animacao.animarPincas();
 	animacao.animarCauda();
+	animacao.andar();
 	glutPostRedisplay();
 }
 

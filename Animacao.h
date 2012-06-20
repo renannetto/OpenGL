@@ -10,7 +10,7 @@
 
 #include "Modelo.h"
 
-#define FRAMES 60
+#define FRAMES 20
 
 class Animacao {
 public:
@@ -18,6 +18,7 @@ public:
 	virtual ~Animacao();
 	void animarPincas();
 	void animarCauda();
+	void andar();
 private:
 	Modelo *modelo;
 };
