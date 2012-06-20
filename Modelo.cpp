@@ -8,98 +8,355 @@
 #include "Modelo.h"
 
 Modelo::Modelo() {
-	angulos[L1][0] = -45;
-	angulos[R1][0] = 45;
-	angulos[L2][0] = -45;
-	angulos[R2][0] = 45;
-	angulos[L3][0] = -45;
-	angulos[R3][0] = 45;
-	angulos[L1][1] = 45;
-	angulos[R1][1] = -45;
-	angulos[L2][1] = 45;
-	angulos[R2][1] = -45;
-	angulos[L3][1] = 45;
-	angulos[R3][1] = -45;
+	angulos[PATA_ESQ_1][0][Z] = -135;
+	angulos[PATA_DIR_1][0][Z] = 135;
+	angulos[PATA_ESQ_2][0][Z] = -135;
+	angulos[PATA_DIR_2][0][Z] = 135;
+	angulos[PATA_ESQ_3][0][Z] = -135;
+	angulos[PATA_DIR_3][0][Z] = 135;
+	angulos[PATA_ESQ_4][0][Z] = -135;
+	angulos[PATA_DIR_4][0][Z] = 135;
+
+	angulos[PATA_ESQ_1][1][Z] = 90;
+	angulos[PATA_DIR_1][1][Z] = -90;
+	angulos[PATA_ESQ_2][1][Z] = 90;
+	angulos[PATA_DIR_2][1][Z] = -90;
+	angulos[PATA_ESQ_3][1][Z] = 90;
+	angulos[PATA_DIR_3][1][Z] = -90;
+	angulos[PATA_ESQ_4][1][Z] = 90;
+	angulos[PATA_DIR_4][1][Z] = -90;
+
+	angulos[PATA_ESQ_1][2][Z] = 45;
+	angulos[PATA_DIR_1][2][Z] = -45;
+	angulos[PATA_ESQ_2][2][Z] = 45;
+	angulos[PATA_DIR_2][2][Z] = -45;
+	angulos[PATA_ESQ_3][2][Z] = 45;
+	angulos[PATA_DIR_3][2][Z] = -45;
+	angulos[PATA_ESQ_4][2][Z] = 45;
+	angulos[PATA_DIR_4][2][Z] = -45;
+
+	angulos[PINCA_ESQ][0][Y] = 45;
+	angulos[PINCA_DIR][0][Y] = -45;
+
+	angulos[PINCA_ESQ][1][Y] = -45;
+	angulos[PINCA_DIR][1][Y] = 45;
+
+	angulos[PINCA_ESQ][2][Y] = -45;
+	angulos[PINCA_DIR][2][Y] = 45;
+
+	angulos[CAUDA][0][X] = -90;
+	angulos[CAUDA][1][X] = -30;
+	angulos[CAUDA][2][X] = -30;
+
+	angulos[FERRAO][0][X] = -45;
 }
 
 Modelo::~Modelo() {
 	// TODO Auto-generated destructor stub
 }
 
-void Modelo::desenharModelo() {
+void Modelo::desenharModelo(int ang, FRAME frame) {
 	glPushMatrix();
 	glTranslatef(0, 0, -2);
-	//glRotatef(-90, 0.0, 1.0, 0.0);
-	desenharTorso();
+	glRotatef(ang, 0.0, 1.0, 0.0);
+	desenharTorso(frame);
 
 	glPushMatrix();
 	glTranslatef(-(1.1 * TORSO_LARG / 2), 0, 0);
-	glTranslatef(0.0, 0.0, TORSO_COMP / 3);
-	desenharPata(L1);
-	glTranslatef(0.0, 0.0, -TORSO_COMP / 3);
-	desenharPata(L2);
-	glTranslatef(0.0, 0.0, -TORSO_COMP / 3);
-	desenharPata(L3);
+	glTranslatef(0.0, 0.0, 2 * TORSO_COMP / 5);
+	desenharPata(PATA_ESQ_1, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPata(PATA_ESQ_2, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPata(PATA_ESQ_3, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPata(PATA_ESQ_4, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPinca(PINCA_ESQ, frame);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef((1.1 * TORSO_LARG / 2), 0, 0);
-	glTranslatef(0.0, 0.0, TORSO_COMP / 3);
-	desenharPata(R1);
-	glTranslatef(0.0, 0.0, -TORSO_COMP / 3);
-	desenharPata(R2);
-	glTranslatef(0.0, 0.0, -TORSO_COMP / 3);
-	desenharPata(R3);
+	glTranslatef(0.0, 0.0, 2 * TORSO_COMP / 5);
+	desenharPata(PATA_DIR_1, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPata(PATA_DIR_2, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPata(PATA_DIR_3, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPata(PATA_DIR_4, frame);
+	glTranslatef(0.0, 0.0, -TORSO_COMP / 5);
+	desenharPinca(PINCA_DIR, frame);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0.0, 0.0, (TORSO_COMP / 2) + ART);
+	desenharCauda(CAUDA, frame);
 	glPopMatrix();
 
 	glPopMatrix();
 }
 
-void Modelo::desenharTorso() {
+void Modelo::desenharTorso(FRAME frame) {
 	glPushMatrix();
 	glScalef(TORSO_LARG, TORSO_ALT, TORSO_COMP);
-	glColor3f(0.0, 0.0, 1.0);
-	glutWireCube(1.0);
+	glColor3f(0.0, 1.0, 0.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
 	glPopMatrix();
 }
 
-void Modelo::desenharPata(LADO lado) {
+void Modelo::desenharPata(PARTE_DO_CORPO parte, FRAME frame) {
 	glPushMatrix();
-	glRotatef(angulos[lado][0], 0.0, 0.0, 1.0);
-	desenharPataSuperior(lado);
-	glTranslatef(0.0, -(PATA_SUP_COMP / 2 + PATA_ART), 0.0);
-	glRotatef(angulos[lado][1], 0.0, 0.0, 1.0);
-	desenharPataInferior(lado);
+	glRotatef(angulos[parte][0][Z], 0.0, 0.0, 1.0);
+	desenharPataSuperior(frame);
+	glTranslatef(0.0, -(PATA_SUP_ALT / 2 + ART), 0.0);
+	glRotatef(angulos[parte][1][Z], 0.0, 0.0, 1.0);
+	desenharPataMeio(frame);
+	glTranslatef(0.0, -(PATA_MEIO_ALT / 2 + ART), 0.0);
+	glRotatef(angulos[parte][2][Z], 0.0, 0.0, 1.0);
+	desenharPataInferior(frame);
 	glPopMatrix();
 }
 
-void Modelo::desenharPataSuperior(LADO lado) {
+void Modelo::desenharPataSuperior(FRAME frame) {
 	glPushMatrix();
-	glScalef(PATA_ART, PATA_ART, PATA_ART);
+	glScalef(ART, ART, ART);
 	glColor3f(0.0, 0.0, 1.0);
-	glutWireSphere(1.0, 8, 8);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
 	glPopMatrix();
 
-	glTranslatef(0.0, -(PATA_SUP_ALT / 2 + PATA_ART), 0.0);
+	glTranslatef(0.0, -(PATA_SUP_ALT / 2 + ART), 0.0);
 	glPushMatrix();
-	glScalef(PATA_SUP_LARG, PATA_SUP_COMP, PATA_SUP_ALT);
+	glScalef(PATA_SUP_LARG, PATA_SUP_ALT, PATA_SUP_COMP);
 	glColor3f(0.0, 0.0, 1.0);
-	glutWireCube(1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
 	glPopMatrix();
 }
 
-void Modelo::desenharPataInferior(LADO lado) {
+void Modelo::desenharPataMeio(FRAME frame) {
 	glPushMatrix();
-	glScalef(PATA_ART, PATA_ART, PATA_ART);
+	glScalef(ART, ART, ART);
 	glColor3f(0.0, 0.0, 1.0);
-	glutWireSphere(1.0, 8, 8);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
 	glPopMatrix();
 
-	glTranslatef(0.0, -(PATA_INF_ALT / 2 + PATA_ART), 0.0);
+	glTranslatef(0.0, -(PATA_MEIO_ALT / 2 + ART), 0.0);
 	glPushMatrix();
-	glScalef(PATA_INF_LARG, PATA_INF_COMP, PATA_INF_ALT);
+	glScalef(PATA_MEIO_LARG, PATA_MEIO_ALT, PATA_MEIO_COMP);
 	glColor3f(0.0, 0.0, 1.0);
-	glutWireCube(1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharPataInferior(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, -(PATA_INF_ALT / 2 + ART), 0.0);
+	glPushMatrix();
+	glScalef(PATA_INF_LARG, PATA_INF_ALT, PATA_INF_COMP);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharPinca(PARTE_DO_CORPO parte, FRAME frame) {
+	glPushMatrix();
+	glRotatef(angulos[parte][0][Y], 0.0, 1.0, 0.0);
+	desenharPincaSuperior(frame);
+	glTranslatef(0.0, 0.0, -(PINCA_SUP_COMP / 2 + ART));
+	glRotatef(angulos[parte][1][Y], 0.0, 1.0, 0.0);
+	desenharPincaMeio(frame);
+	glTranslatef(0.0, 0.0, -(PINCA_MEIO_COMP / 2 + ART));
+	glRotatef(angulos[parte][2][Y], 0.0, 1.0, 0.0);
+	desenharPincaInferior(frame);
+	glPopMatrix();
+}
+
+void Modelo::desenharPincaSuperior(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(1.0, 0.0, 0.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, -(PINCA_SUP_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(PINCA_SUP_LARG, PINCA_SUP_ALT, PINCA_SUP_COMP);
+	glColor3f(1.0, 0.0, 0.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharPincaMeio(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(1.0, 0.0, 0.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, -(PINCA_MEIO_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(PINCA_MEIO_LARG, PINCA_MEIO_ALT, PINCA_MEIO_COMP);
+	glColor3f(1.0, 0.0, 0.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharPincaInferior(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(1.0, 0.0, 0.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, -(PINCA_INF_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(PINCA_INF_LARG, PINCA_INF_ALT, PINCA_INF_COMP);
+	glColor3f(1.0, 0.0, 0.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharCauda(PARTE_DO_CORPO parte, FRAME frame) {
+	glPushMatrix();
+	glRotatef(angulos[parte][0][X], 1.0, 0.0, 0.0);
+	desenharCaudaSuperior(frame);
+	glTranslatef(0.0, 0.0, (CAUDA_SUP_COMP / 2 + ART));
+	glRotatef(angulos[parte][1][X], 1.0, 0.0, 0.0);
+	desenharCaudaMeio(frame);
+	glTranslatef(0.0, 0.0, (CAUDA_MEIO_COMP / 2 + ART));
+	glRotatef(angulos[parte][2][X], 1.0, 0.0, 0.0);
+	desenharCaudaInferior(frame);
+	glTranslatef(0.0, 0.0, (CAUDA_INF_COMP / 2 + ART));
+	glRotatef(angulos[FERRAO][0][X], 1.0, 0.0, 0.0);
+	desenharFerrao(frame);
+	glPopMatrix();
+}
+
+void Modelo::desenharCaudaSuperior(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, (CAUDA_SUP_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(CAUDA_SUP_LARG, CAUDA_SUP_ALT, CAUDA_SUP_COMP);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharCaudaMeio(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, (CAUDA_MEIO_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(CAUDA_MEIO_LARG, CAUDA_MEIO_ALT, CAUDA_MEIO_COMP);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharCaudaInferior(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, (CAUDA_INF_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(CAUDA_INF_LARG, CAUDA_INF_ALT, CAUDA_INF_COMP);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
+	glPopMatrix();
+}
+
+void Modelo::desenharFerrao(FRAME frame) {
+	glPushMatrix();
+	glScalef(ART, ART, ART);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireSphere(1.0, 8, 8);
+	else
+		glutSolidSphere(1.0, 8, 8);
+	glPopMatrix();
+
+	glTranslatef(0.0, 0.0, (FERRAO_COMP / 2 + ART));
+	glPushMatrix();
+	glScalef(FERRAO_LARG, FERRAO_ALT, FERRAO_COMP);
+	glColor3f(0.0, 0.0, 1.0);
+	if (frame == WIRE)
+		glutWireCube(1.0);
+	else
+		glutSolidCube(1.0);
 	glPopMatrix();
 }
 

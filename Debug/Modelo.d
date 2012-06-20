@@ -1,3 +1,3 @@
-Modelo.d: ../Modelo.cpp ../Modelo.h
+Modelo.d Modelo.o: ../Modelo.cpp ../Modelo.h
 
 ../Modelo.h:

@@ -8,6 +8,8 @@
 
 Modelo modelo;
 
+int ang = 0;
+
 void setLight0() {
 	const GLfloat lPos[4] = { 100, 100, 100, 1 };
 	const GLfloat lDif[4] = { 1, 1, 1, 1 };
@@ -28,7 +30,7 @@ void draw() {
 
 	setLight0();
 
-	modelo.desenharModelo();
+	modelo.desenharModelo(ang, SOLID);
 
 	//glColor3f(1,1,1);
 	//glutil::drawTriangle(0,0,-10, _ang); // feito na primeira aula de OpenGL
@@ -46,9 +48,9 @@ void update() {
 
 void keyPressed(unsigned char key, int x, int y) {
 	switch (key) { // feito na primeira aula de OpenGL
-	case 'a': //ang += 10;
+	case 'a': ang += 10;
 		break;
-	case 'd': //ang -= 10;
+	case 'd': ang -= 10;
 		break;
 	}
 
