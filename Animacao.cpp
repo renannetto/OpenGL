@@ -18,45 +18,98 @@ Animacao::~Animacao() {
 void Animacao::animarPincas() {
 	static int frames = FRAMES;
 	static int flag = 0;
-	float p_esq_sup, p_esq_meio, p_esq_inf, p_dir_sup, p_dir_meio, p_dir_inf;
-	float p_esq_sup_add, p_esq_meio_add, p_esq_inf_add, p_dir_sup_add,
-			p_dir_meio_add, p_dir_inf_add;
+	float pinca_esq_sup, pinca_esq_meio, pinca_esq_inf, pinca_dir_sup,
+			pinca_dir_meio, pinca_dir_inf;
 
 	float angulos_add[12][3][3];
 
+	for (int i = 0; i < 12; i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
+				angulos_add[i][j][k] = 0;
+			}
+		}
+	}
+
 	switch (flag) {
 	case 0:
-		p_esq_sup = 0;
-		p_esq_meio = -30;
-		p_esq_inf = -30;
+		pinca_esq_sup = 0;
+		pinca_esq_meio = 30;
+		pinca_esq_inf = 0;
 
-		p_dir_sup = 0;
-		p_dir_meio = 30;
-		p_dir_inf = 30;
+		pinca_dir_sup = 0;
+		pinca_dir_meio = -30;
+		pinca_dir_inf = 0;
+		break;
+	case 1:
+		pinca_esq_sup = 0;
+		pinca_esq_meio = -30;
+		pinca_esq_inf = 0;
+
+		pinca_dir_sup = 0;
+		pinca_dir_meio = 30;
+		pinca_dir_inf = 0;
 		break;
 	}
 
-	p_esq_sup_add = p_esq_sup / FRAMES;
-	p_esq_meio_add = p_esq_meio / FRAMES;
-	p_esq_inf_add = p_esq_inf / FRAMES;
+	angulos_add[PINCA_ESQ][0][Y] = pinca_esq_sup / FRAMES;
+	angulos_add[PINCA_ESQ][1][Y] = pinca_esq_meio / FRAMES;
+	angulos_add[PINCA_ESQ][2][Y] = pinca_esq_inf / FRAMES;
 
-	p_dir_sup_add = p_esq_sup / FRAMES;
-	p_dir_meio_add = p_esq_meio / FRAMES;
-	p_dir_inf_add = p_esq_inf / FRAMES;
-
-	angulos_add[PINCA_ESQ][0][Y] = p_esq_sup_add;
-	angulos_add[PINCA_ESQ][1][Y] = p_esq_meio_add;
-	angulos_add[PINCA_ESQ][2][Y] = p_esq_inf_add;
-
-	angulos_add[PINCA_DIR][0][Y] = p_dir_sup_add;
-	angulos_add[PINCA_DIR][1][Y] = p_dir_meio_add;
-	angulos_add[PINCA_DIR][2][Y] = p_dir_inf_add;
+	angulos_add[PINCA_DIR][0][Y] = pinca_dir_sup / FRAMES;
+	angulos_add[PINCA_DIR][1][Y] = pinca_dir_meio / FRAMES;
+	angulos_add[PINCA_DIR][2][Y] = pinca_dir_inf / FRAMES;
 
 	modelo->acrescentarAngulos(angulos_add);
 
 	frames--;
 	if (frames == 0) {
-		flag = (flag + 1) % 1;
+		flag = (flag + 1) % 2;
+		frames = FRAMES;
+	}
+}
+
+void Animacao::animarCauda() {
+	static int frames = FRAMES;
+	static int flag = 0;
+	float cauda_sup, cauda_meio, cauda_inf, ferrao;
+
+	float angulos_add[12][3][3];
+
+	for (int i = 0; i < 12; i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
+				angulos_add[i][j][k] = 0;
+			}
+		}
+	}
+
+	switch (flag) {
+	case 0:
+		cauda_sup = 0;
+		cauda_meio = 15;
+		cauda_inf = 15;
+		ferrao = 30;
+		break;
+	case 1:
+		cauda_sup = 0;
+		cauda_meio = -15;
+		cauda_inf = -15;
+		ferrao = -30;
+		break;
+	}
+
+	angulos_add[CAUDA][0][X] = cauda_sup / FRAMES;
+	angulos_add[CAUDA][1][X] = cauda_meio / FRAMES;
+	angulos_add[CAUDA][2][X] = cauda_inf / FRAMES;
+	angulos_add[FERRAO][0][X] = ferrao / FRAMES;
+
+	modelo->acrescentarAngulos(angulos_add);
+
+	frames--;
+	if (frames == 0) {
+		flag = (flag + 1) % 2;
+		frames = FRAMES;
 	}
 }
 

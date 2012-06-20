@@ -17,6 +17,7 @@ public:
 	Animacao(Modelo *modeloAnimacao);
 	virtual ~Animacao();
 	void animarPincas();
+	void animarCauda();
 private:
 	Modelo *modelo;
 };

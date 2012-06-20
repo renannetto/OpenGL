@@ -38,14 +38,17 @@ void draw() {
 
 void update() {
 	animacao.animarPincas();
+	animacao.animarCauda();
 	glutPostRedisplay();
 }
 
 void keyPressed(unsigned char key, int x, int y) {
 	switch (key) { // feito na primeira aula de OpenGL
-	case 'a': ang += 10;
+	case 'a':
+		ang += 10;
 		break;
-	case 'd': ang -= 10;
+	case 'd':
+		ang -= 10;
 		break;
 	}
 
@@ -95,6 +98,9 @@ int main(int argc, char** argv) {
 	glutKeyboardFunc(keyPressed);
 
 	initGL(); // inicializar OpenGL
+
+	//modelo = new Modelo();
+	//animacao = new Animacao(modelo);
 
 	glutMainLoop(); // nao retorna
 

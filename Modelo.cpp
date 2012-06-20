@@ -8,6 +8,14 @@
 #include "Modelo.h"
 
 Modelo::Modelo() {
+	for (int i = 0; i < 12; i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
+				angulos[i][j][k] = 0;
+			}
+		}
+	}
+
 	angulos[PATA_ESQ_1][0][Z] = -135;
 	angulos[PATA_DIR_1][0][Z] = 135;
 	angulos[PATA_ESQ_2][0][Z] = -135;
@@ -279,7 +287,7 @@ void Modelo::desenharCauda(PARTE_DO_CORPO parte, FRAME frame) {
 void Modelo::desenharCaudaSuperior(FRAME frame) {
 	glPushMatrix();
 	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireSphere(1.0, 8, 8);
 	else
@@ -289,7 +297,7 @@ void Modelo::desenharCaudaSuperior(FRAME frame) {
 	glTranslatef(0.0, 0.0, (CAUDA_SUP_COMP / 2 + ART));
 	glPushMatrix();
 	glScalef(CAUDA_SUP_LARG, CAUDA_SUP_ALT, CAUDA_SUP_COMP);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireCube(1.0);
 	else
@@ -300,7 +308,7 @@ void Modelo::desenharCaudaSuperior(FRAME frame) {
 void Modelo::desenharCaudaMeio(FRAME frame) {
 	glPushMatrix();
 	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireSphere(1.0, 8, 8);
 	else
@@ -310,7 +318,7 @@ void Modelo::desenharCaudaMeio(FRAME frame) {
 	glTranslatef(0.0, 0.0, (CAUDA_MEIO_COMP / 2 + ART));
 	glPushMatrix();
 	glScalef(CAUDA_MEIO_LARG, CAUDA_MEIO_ALT, CAUDA_MEIO_COMP);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireCube(1.0);
 	else
@@ -321,7 +329,7 @@ void Modelo::desenharCaudaMeio(FRAME frame) {
 void Modelo::desenharCaudaInferior(FRAME frame) {
 	glPushMatrix();
 	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireSphere(1.0, 8, 8);
 	else
@@ -331,7 +339,7 @@ void Modelo::desenharCaudaInferior(FRAME frame) {
 	glTranslatef(0.0, 0.0, (CAUDA_INF_COMP / 2 + ART));
 	glPushMatrix();
 	glScalef(CAUDA_INF_LARG, CAUDA_INF_ALT, CAUDA_INF_COMP);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireCube(1.0);
 	else
@@ -342,7 +350,7 @@ void Modelo::desenharCaudaInferior(FRAME frame) {
 void Modelo::desenharFerrao(FRAME frame) {
 	glPushMatrix();
 	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireSphere(1.0, 8, 8);
 	else
@@ -352,7 +360,7 @@ void Modelo::desenharFerrao(FRAME frame) {
 	glTranslatef(0.0, 0.0, (FERRAO_COMP / 2 + ART));
 	glPushMatrix();
 	glScalef(FERRAO_LARG, FERRAO_ALT, FERRAO_COMP);
-	glColor3f(0.0, 0.0, 1.0);
+	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
 		glutWireCube(1.0);
 	else
@@ -361,9 +369,9 @@ void Modelo::desenharFerrao(FRAME frame) {
 }
 
 void Modelo::acrescentarAngulos(float angulos_add[12][3][3]) {
-	for (int i=0; i<12; i++) {
-		for (int j=0; j<3; j++) {
-			for (int k=0; k<3; k++) {
+	for (int i = 0; i < 12; i++) {
+		for (int j = 0; j < 3; j++) {
+			for (int k = 0; k < 3; k++) {
 				angulos[i][j][k] += angulos_add[i][j][k];
 			}
 		}
