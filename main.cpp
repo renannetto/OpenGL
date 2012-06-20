@@ -9,7 +9,8 @@
 Modelo modelo;
 Animacao animacao = Animacao(&modelo);
 
-int ang = 0;
+int angX = 0;
+int angY = 0;
 
 void setLight0() {
 	const GLfloat lPos[4] = { 100, 100, 100, 1 };
@@ -31,7 +32,7 @@ void draw() {
 
 	setLight0();
 
-	modelo.desenharModelo(ang, SOLID);
+	modelo.desenharModelo(angX, angY, SOLID);
 
 	glutSwapBuffers();
 }
@@ -46,10 +47,16 @@ void update() {
 void keyPressed(unsigned char key, int x, int y) {
 	switch (key) { // feito na primeira aula de OpenGL
 	case 'a':
-		ang += 10;
+		angX += 10;
 		break;
 	case 'd':
-		ang -= 10;
+		angX -= 10;
+		break;
+	case 'w':
+		angY += 10;
+		break;
+	case 's':
+		angY -= 10;
 		break;
 	}
 
