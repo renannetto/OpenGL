@@ -72,8 +72,9 @@ class Modelo {
 public:
 	Modelo();
 	virtual ~Modelo();
-	void desenharModelo(int ang, FRAME frame);
+	void desenharModelo(int angX, int angY, FRAME frame);
 	void acrescentarAngulos(float angulos_add[12][3][3]);
+	void movimentoDoCorpo(float x, float y, float z);
 private:
 	void desenharTorso(FRAME frame);
 	void desenharPata(PARTE_DO_CORPO parte, FRAME frame);
@@ -90,6 +91,7 @@ private:
 	void desenharCaudaInferior(FRAME frame);
 	void desenharFerrao(FRAME frame);
 	float angulos[12][3][3];
+	float posicao[3];
 };
 
 #endif /* MODELO_H_ */

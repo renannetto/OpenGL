@@ -8,6 +8,10 @@
 #include "Modelo.h"
 
 Modelo::Modelo() {
+	posicao[X] = 0;
+	posicao[Y] = 0;
+	posicao[Z] = -2;
+
 	for (int i = 0; i < 12; i++) {
 		for (int j = 0; j < 3; j++) {
 			for (int k = 0; k < 3; k++) {
@@ -63,10 +67,11 @@ Modelo::~Modelo() {
 	// TODO Auto-generated destructor stub
 }
 
-void Modelo::desenharModelo(int ang, FRAME frame) {
+void Modelo::desenharModelo(int angX, int angY, FRAME frame) {
 	glPushMatrix();
-	glTranslatef(0, 0, -2);
-	glRotatef(ang, 0.0, 1.0, 0.0);
+	glTranslatef(posicao[X], posicao[Y], posicao[Z]);
+	glRotatef(angX, 0.0, 1.0, 0.0);
+	glRotatef(angY, 1.0, 0.0, 0.0);
 	desenharTorso(frame);
 
 	glPushMatrix();
@@ -376,5 +381,11 @@ void Modelo::acrescentarAngulos(float angulos_add[12][3][3]) {
 			}
 		}
 	}
+}
+
+void Modelo::movimentoDoCorpo(float x, float y, float z) {
+	posicao[X] += x;
+	posicao[Y] += y;
+	posicao[Z] += z;
 }
 
