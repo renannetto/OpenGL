@@ -360,3 +360,13 @@ void Modelo::desenharFerrao(FRAME frame) {
 	glPopMatrix();
 }
 
+void Modelo::acrescentarAngulos(float angulos_add[12][3][3]) {
+	for (int i=0; i<12; i++) {
+		for (int j=0; j<3; j++) {
+			for (int k=0; k<3; k++) {
+				angulos[i][j][k] += angulos_add[i][j][k];
+			}
+		}
+	}
+}
+

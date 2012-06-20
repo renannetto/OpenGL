@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Animacao.cpp \
 ../Modelo.cpp \
 ../main.cpp 
 
 OBJS += \
+./Animacao.o \
 ./Modelo.o \
 ./main.o 
 
 CPP_DEPS += \
+./Animacao.d \
 ./Modelo.d \
 ./main.d 
 

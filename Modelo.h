@@ -73,6 +73,7 @@ public:
 	Modelo();
 	virtual ~Modelo();
 	void desenharModelo(int ang, FRAME frame);
+	void acrescentarAngulos(float angulos_add[12][3][3]);
 private:
 	void desenharTorso(FRAME frame);
 	void desenharPata(PARTE_DO_CORPO parte, FRAME frame);

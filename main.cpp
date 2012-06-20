@@ -4,9 +4,10 @@
  *  Created on: 16/06/2012
  *      Author: renan
  */
-#include "Modelo.h"
+#include "Animacao.h"
 
 Modelo modelo;
+Animacao animacao = Animacao(&modelo);
 
 int ang = 0;
 
@@ -32,18 +33,12 @@ void draw() {
 
 	modelo.desenharModelo(ang, SOLID);
 
-	//glColor3f(1,1,1);
-	//glutil::drawTriangle(0,0,-10, _ang); // feito na primeira aula de OpenGL
-
-	// TODO
-
 	glutSwapBuffers();
 }
 
 void update() {
-	// TODO
-
-	//glutPostRedisplay();
+	animacao.animarPincas();
+	glutPostRedisplay();
 }
 
 void keyPressed(unsigned char key, int x, int y) {
