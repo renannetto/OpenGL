@@ -10,7 +10,7 @@
 
 #include "Modelo.h"
 
-#define FRAMES 30
+#define FRAMES 50
 
 class Animacao {
 public:

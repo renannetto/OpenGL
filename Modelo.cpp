@@ -6,6 +6,7 @@
  */
 
 #include "Modelo.h"
+#include <math.h>
 
 Modelo::Modelo() {
 	posicao[X] = 0;
@@ -19,6 +20,15 @@ Modelo::Modelo() {
 			}
 		}
 	}
+
+	angulos[PATA_ESQ_1][0][Y] = 10;
+	angulos[PATA_DIR_1][0][Y] = 10;
+	angulos[PATA_ESQ_2][0][Y] = -10;
+	angulos[PATA_DIR_2][0][Y] = -10;
+	angulos[PATA_ESQ_3][0][Y] = 10;
+	angulos[PATA_DIR_3][0][Y] = 10;
+	angulos[PATA_ESQ_4][0][Y] = -10;
+	angulos[PATA_DIR_4][0][Y] = -10;
 
 	angulos[PATA_ESQ_1][0][Z] = -135;
 	angulos[PATA_DIR_1][0][Z] = 135;
@@ -123,6 +133,7 @@ void Modelo::desenharTorso(FRAME frame) {
 
 void Modelo::desenharPata(PARTE_DO_CORPO parte, FRAME frame) {
 	glPushMatrix();
+	glRotatef(angulos[parte][0][Y], 0.0, 1.0, 0.0);
 	glRotatef(angulos[parte][0][Z], 0.0, 0.0, 1.0);
 	desenharPataSuperior(frame);
 	glTranslatef(0.0, -(PATA_SUP_ALT / 2 + ART), 0.0);
@@ -262,14 +273,15 @@ void Modelo::desenharPincaInferior(FRAME frame) {
 		glutSolidSphere(1.0, 8, 8);
 	glPopMatrix();
 
-	glTranslatef(0.0, 0.0, -(PINCA_INF_COMP / 2 + ART));
+	glTranslatef(0.0, 0.0, -(ART));
 	glPushMatrix();
 	glScalef(PINCA_INF_LARG, PINCA_INF_ALT, PINCA_INF_COMP);
+	glRotatef(180, 1.0, 0.0, 0.0);
 	glColor3f(1.0, 0.0, 0.0);
 	if (frame == WIRE)
-		glutWireCube(1.0);
+		glutWireCone(0.5, 1.0, 8, 8);
 	else
-		glutSolidCube(1.0);
+		glutSolidCone(0.5, 1.0, 8, 8);
 	glPopMatrix();
 }
 
@@ -362,14 +374,14 @@ void Modelo::desenharFerrao(FRAME frame) {
 		glutSolidSphere(1.0, 8, 8);
 	glPopMatrix();
 
-	glTranslatef(0.0, 0.0, (FERRAO_COMP / 2 + ART));
+	glTranslatef(0.0, 0.0, ART);
 	glPushMatrix();
 	glScalef(FERRAO_LARG, FERRAO_ALT, FERRAO_COMP);
 	glColor3f(1.0, 1.0, 0.0);
 	if (frame == WIRE)
-		glutWireCube(1.0);
+		glutWireCone(0.5, 1.0, 8, 8);
 	else
-		glutSolidCube(1.0);
+		glutSolidCone(0.5, 1.0, 8, 8);
 	glPopMatrix();
 }
 

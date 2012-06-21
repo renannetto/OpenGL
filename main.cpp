@@ -57,6 +57,7 @@ void keyPressed(unsigned char key, int x, int y) {
 		break;
 	case 's':
 		angY -= 10;
+		//animacao.andar();
 		break;
 	}
 
