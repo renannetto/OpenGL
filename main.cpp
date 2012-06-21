@@ -40,7 +40,7 @@ void draw() {
 void update() {
 	animacao.animarPincas();
 	animacao.animarCauda();
-	animacao.andar();
+	//animacao.andar();
 	glutPostRedisplay();
 }
 
@@ -56,7 +56,8 @@ void keyPressed(unsigned char key, int x, int y) {
 		angY += 10;
 		break;
 	case 's':
-		angY -= 10;
+		//angY -= 10;
+		animacao.andar();
 		break;
 	}
 
