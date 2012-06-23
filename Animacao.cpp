@@ -86,16 +86,28 @@ void Animacao::animarCauda() {
 
 	switch (flag) {
 	case 0:
-		cauda_sup = 0;
-		cauda_meio = 15;
-		cauda_inf = 15;
-		ferrao = 30;
+		cauda_sup = 60;
+		cauda_meio = 40;
+		cauda_inf = 40;
+		ferrao = 60;
 		break;
 	case 1:
-		cauda_sup = 0;
-		cauda_meio = -15;
-		cauda_inf = -15;
-		ferrao = -30;
+		cauda_sup = -90;
+		cauda_meio = -60;
+		cauda_inf = -60;
+		ferrao = -90;
+		break;
+	case 2:
+		cauda_sup = 10;
+		cauda_meio = 0;
+		cauda_inf = 0;
+		ferrao = 0;
+		break;
+	case 3:
+		cauda_sup = 20;
+		cauda_meio = 20;
+		cauda_inf = 20;
+		ferrao = 30;
 		break;
 	}
 
@@ -108,7 +120,7 @@ void Animacao::animarCauda() {
 
 	frames--;
 	if (frames == 0) {
-		flag = (flag + 1) % 2;
+		flag = (flag + 1) % 4;
 		frames = FRAMES;
 	}
 }
@@ -265,7 +277,7 @@ void Animacao::andar() {
 	angulos_add[PATA_DIR_4][2][Z] = pata_dir_4_meio_Z / FRAMES;
 
 	modelo->acrescentarAngulos(angulos_add);
-	modelo->movimentoDoCorpo(0, base/FRAMES, 0);
+	modelo->movimentoDoCorpo(0, base / FRAMES, 0);
 
 	frames--;
 	if (frames == 0) {

@@ -103,7 +103,7 @@ void Modelo::desenharModelo(int angX, int angY, FRAME frame) {
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(0.0, 0.0, (TORSO_COMP / 2) + ART);
+	glTranslatef(0.0, (TORSO_ALT - ART) / 2, (TORSO_COMP / 2) + ART);
 	desenharCauda(CAUDA, frame);
 	glPopMatrix();
 
