@@ -19,6 +19,7 @@ public:
 	void animarPincas();
 	void animarCauda();
 	void andar();
+	void correr();
 private:
 	Modelo *modelo;
 };
