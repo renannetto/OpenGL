@@ -38,9 +38,12 @@ void draw() {
 }
 
 void update() {
-	//animacao.animarPincas();
-	//animacao.animarCauda();
-	//animacao.andar();
+
+	animacao.animarPincas();
+	animacao.animarCauda();
+	animacao.andar();
+	//animacao.correr();
+
 	glutPostRedisplay();
 }
 
@@ -58,8 +61,8 @@ void keyPressed(unsigned char key, int x, int y) {
 	case 's':
 		angY -= 10;
 		break;
-	case 'j':
-		animacao.animarCauda();
+	case 32:
+		animacao.atacar();
 		break;
 	}
 

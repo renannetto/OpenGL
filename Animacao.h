@@ -10,7 +10,8 @@
 
 #include "Modelo.h"
 
-#define FRAMES 30
+#define FRAMESCAMINHADA 25
+#define FRAMESATAQUE 20
 
 class Animacao {
 public:
@@ -19,8 +20,11 @@ public:
 	void animarPincas();
 	void animarCauda();
 	void andar();
+	void correr();
+	void atacar();
 private:
 	Modelo *modelo;
+	bool atacando;
 };
 
 #endif /* ANIMACAO_H_ */
