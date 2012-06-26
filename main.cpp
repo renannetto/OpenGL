@@ -11,6 +11,8 @@ Animacao animacao = Animacao(&modelo);
 
 int angX = 0;
 int angY = 0;
+bool andandoParaFrente = false;
+bool andandoParaTras = false;
 
 void setLight0() {
 	const GLfloat lPos[4] = { 100, 100, 100, 1 };
@@ -41,7 +43,10 @@ void update() {
 
 	animacao.animarPincas();
 	animacao.animarCauda();
-	animacao.andar();
+	if(andandoParaFrente)
+		animacao.andar(true);
+	else if(andandoParaTras)
+		animacao.andar(false);
 	//animacao.correr();
 
 	glutPostRedisplay();
@@ -64,9 +69,29 @@ void keyPressed(unsigned char key, int x, int y) {
 	case 32:
 		animacao.atacar();
 		break;
+	case 'i':
+		andandoParaFrente = true;
+		break;
+	case 'k':
+		andandoParaTras = true;
+		break;
+	case '1':
+		andandoParaFrente = !andandoParaFrente;
+		break;
 	}
 
 	glutPostRedisplay(); // redesenha depois de evento de teclado
+}
+
+void keyReleased(unsigned char key, int x, int y) {
+	switch (key) {
+	case 'i':
+		andandoParaFrente = false;
+		break;
+	case 'k':
+		andandoParaTras = false;
+		break;
+	}
 }
 
 void reshape(int w, int h) {
@@ -110,6 +135,7 @@ int main(int argc, char** argv) {
 	glutIdleFunc(update);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyPressed);
+	glutKeyboardUpFunc(keyReleased);
 
 	initGL(); // inicializar OpenGL
 

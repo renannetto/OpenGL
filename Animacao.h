@@ -19,7 +19,7 @@ public:
 	virtual ~Animacao();
 	void animarPincas();
 	void animarCauda();
-	void andar();
+	void andar(bool frente);
 	void correr();
 	void atacar();
 private:

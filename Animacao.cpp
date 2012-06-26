@@ -4,7 +4,6 @@
  *  Created on: 20/06/2012
  *      Author: renan
  */
-
 #include "Animacao.h"
 
 Animacao::Animacao(Modelo *modeloAnimacao) {
@@ -150,9 +149,15 @@ void Animacao::animarCauda() {
 	}
 }
 
-void Animacao::andar() {
+void Animacao::andar(bool frente) {
 	static int frames = FRAMESCAMINHADA;
 	static int flag = 0;
+
+	int direcao;
+	if(frente)
+		direcao = 1;
+	else
+		direcao = -1;
 
 	float base = 0;
 
@@ -332,43 +337,48 @@ void Animacao::andar() {
 		break;
 	}
 
-	angulos_add[PATA_ESQ_1][0][Y] = pata_esq_1_sup_Y / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_2][0][Y] = pata_esq_2_sup_Y / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_3][0][Y] = pata_esq_3_sup_Y / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_4][0][Y] = pata_esq_4_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_1][0][Y] = direcao*pata_esq_1_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_2][0][Y] = direcao*pata_esq_2_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_3][0][Y] = direcao*pata_esq_3_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_4][0][Y] = direcao*pata_esq_4_sup_Y / FRAMESCAMINHADA;
 
-	angulos_add[PATA_DIR_1][0][Y] = pata_dir_1_sup_Y / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_2][0][Y] = pata_dir_2_sup_Y / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_3][0][Y] = pata_dir_3_sup_Y / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_4][0][Y] = pata_dir_4_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_1][0][Y] = direcao*pata_dir_1_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_2][0][Y] = direcao*pata_dir_2_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_3][0][Y] = direcao*pata_dir_3_sup_Y / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_4][0][Y] = direcao*pata_dir_4_sup_Y / FRAMESCAMINHADA;
 
-	angulos_add[PATA_ESQ_1][0][Z] = pata_esq_1_sup_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_2][0][Z] = pata_esq_2_sup_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_3][0][Z] = pata_esq_3_sup_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_4][0][Z] = pata_esq_4_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_1][0][Z] = direcao*pata_esq_1_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_2][0][Z] = direcao*pata_esq_2_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_3][0][Z] = direcao*pata_esq_3_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_4][0][Z] = direcao*pata_esq_4_sup_Z / FRAMESCAMINHADA;
 
-	angulos_add[PATA_DIR_1][0][Z] = pata_dir_1_sup_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_2][0][Z] = pata_dir_2_sup_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_3][0][Z] = pata_dir_3_sup_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_4][0][Z] = pata_dir_4_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_1][0][Z] = direcao*pata_dir_1_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_2][0][Z] = direcao*pata_dir_2_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_3][0][Z] = direcao*pata_dir_3_sup_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_4][0][Z] = direcao*pata_dir_4_sup_Z / FRAMESCAMINHADA;
 
-	angulos_add[PATA_ESQ_1][2][Z] = pata_esq_1_meio_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_2][2][Z] = pata_esq_2_meio_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_3][2][Z] = pata_esq_3_meio_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_ESQ_4][2][Z] = pata_esq_4_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_1][2][Z] = direcao*pata_esq_1_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_2][2][Z] = direcao*pata_esq_2_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_3][2][Z] = direcao*pata_esq_3_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_ESQ_4][2][Z] = direcao*pata_esq_4_meio_Z / FRAMESCAMINHADA;
 
-	angulos_add[PATA_DIR_1][2][Z] = pata_dir_1_meio_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_2][2][Z] = pata_dir_2_meio_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_3][2][Z] = pata_dir_3_meio_Z / FRAMESCAMINHADA;
-	angulos_add[PATA_DIR_4][2][Z] = pata_dir_4_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_1][2][Z] = direcao*pata_dir_1_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_2][2][Z] = direcao*pata_dir_2_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_3][2][Z] = direcao*pata_dir_3_meio_Z / FRAMESCAMINHADA;
+	angulos_add[PATA_DIR_4][2][Z] = direcao*pata_dir_4_meio_Z / FRAMESCAMINHADA;
 
 	modelo->acrescentarAngulos(angulos_add);
-	modelo->movimentoDoCorpo(0, base / FRAMESCAMINHADA, 0);
+	modelo->movimentoDoCorpo(0, direcao * base / FRAMESCAMINHADA, 0);
 
-	frames--;
+	frames -= direcao;
 	if (frames == 0) {
 		flag = (flag + 1) % 4;
 		frames = FRAMESCAMINHADA;
+	} else if (frames == FRAMESCAMINHADA){
+		flag = (flag - 1) % 4;
+		if(flag == -1)
+			flag = 3;
+		frames = 0;
 	}
 }
 
