@@ -20,7 +20,6 @@ public:
 	void animarPincas();
 	void animarCauda();
 	void andar(bool frente);
-	void correr();
 	void atacar();
 private:
 	Modelo *modelo;

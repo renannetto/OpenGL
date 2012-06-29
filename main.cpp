@@ -47,7 +47,6 @@ void update() {
 		animacao.andar(true);
 	else if(andandoParaTras)
 		animacao.andar(false);
-	//animacao.correr();
 
 	glutPostRedisplay();
 }
@@ -138,9 +137,6 @@ int main(int argc, char** argv) {
 	glutKeyboardUpFunc(keyReleased);
 
 	initGL(); // inicializar OpenGL
-
-	//modelo = new Modelo();
-	//animacao = new Animacao(modelo);
 
 	glutMainLoop(); // nao retorna
 

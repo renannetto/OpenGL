@@ -151,15 +151,6 @@ void Modelo::desenharPata(PARTE_DO_CORPO parte, FRAME frame) {
 }
 
 void Modelo::desenharPataSuperior(FRAME frame) {
-	/*glPushMatrix();
-	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
-	if (frame == WIRE)
-		glutWireSphere(1.0, 8, 8);
-	else
-		glutSolidSphere(1.0, 8, 8);
-	glPopMatrix();*/
-
 	glTranslatef(0.0, -(PATA_SUP_ALT / 2), 0.0);
 	glPushMatrix();
 	glScalef(PATA_SUP_LARG, PATA_SUP_ALT, PATA_SUP_COMP);
@@ -172,15 +163,6 @@ void Modelo::desenharPataSuperior(FRAME frame) {
 }
 
 void Modelo::desenharPataMeio(FRAME frame) {
-	/*glPushMatrix();
-	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
-	if (frame == WIRE)
-		glutWireSphere(1.0, 8, 8);
-	else
-		glutSolidSphere(1.0, 8, 8);
-	glPopMatrix();*/
-
 	glTranslatef(0.0, -(PATA_MEIO_ALT / 2), 0.0);
 	glPushMatrix();
 	glScalef(PATA_MEIO_LARG, PATA_MEIO_ALT, PATA_MEIO_COMP);
@@ -193,15 +175,6 @@ void Modelo::desenharPataMeio(FRAME frame) {
 }
 
 void Modelo::desenharPataInferior(FRAME frame) {
-	/*glPushMatrix();
-	glScalef(ART, ART, ART);
-	glColor3f(0.0, 0.0, 1.0);
-	if (frame == WIRE)
-		glutWireSphere(1.0, 8, 8);
-	else
-		glutSolidSphere(1.0, 8, 8);
-	glPopMatrix();*/
-
 	glTranslatef(0.0, -(PATA_INF_ALT / 2), 0.0);
 	glPushMatrix();
 	glScalef(PATA_INF_LARG, PATA_INF_ALT, PATA_INF_COMP);
@@ -227,15 +200,6 @@ void Modelo::desenharPinca(PARTE_DO_CORPO parte, FRAME frame) {
 }
 
 void Modelo::desenharPincaSuperior(FRAME frame) {
-	/*glPushMatrix();
-	glScalef(ART, ART, ART);
-	glColor3f(1.0, 0.0, 0.0);
-	if (frame == WIRE)
-		glutWireSphere(1.0, 8, 8);
-	else
-		glutSolidSphere(1.0, 8, 8);
-	glPopMatrix();*/
-
 	glTranslatef(0.0, 0.0, -(PINCA_SUP_COMP / 2));
 	glPushMatrix();
 	glScalef(PINCA_SUP_LARG, PINCA_SUP_ALT, PINCA_SUP_COMP);
@@ -248,15 +212,6 @@ void Modelo::desenharPincaSuperior(FRAME frame) {
 }
 
 void Modelo::desenharPincaMeio(FRAME frame) {
-	/*glPushMatrix();
-	glScalef(ART, ART, ART);
-	glColor3f(1.0, 0.0, 0.0);
-	if (frame == WIRE)
-		glutWireSphere(1.0, 8, 8);
-	else
-		glutSolidSphere(1.0, 8, 8);
-	glPopMatrix();*/
-
 	glTranslatef(0.0, 0.0, -(PINCA_MEIO_COMP / 2));
 	glPushMatrix();
 	glScalef(PINCA_MEIO_LARG, PINCA_MEIO_ALT, PINCA_MEIO_COMP);
@@ -269,16 +224,6 @@ void Modelo::desenharPincaMeio(FRAME frame) {
 }
 
 void Modelo::desenharPincaInferior(FRAME frame) {
-	/*glPushMatrix();
-	glScalef(ART, ART, ART);
-	glColor3f(1.0, 0.0, 0.0);
-	if (frame == WIRE)
-		glutWireSphere(1.0, 8, 8);
-	else
-		glutSolidSphere(1.0, 8, 8);
-	glPopMatrix();*/
-
-	//glTranslatef(0.0, 0.0, -(ART));
 	glPushMatrix();
 	glScalef(PINCA_INF_LARG, PINCA_INF_ALT, PINCA_INF_COMP);
 	glRotatef(180, 1.0, 0.0, 0.0);
@@ -307,15 +252,6 @@ void Modelo::desenharCauda(PARTE_DO_CORPO parte, FRAME frame) {
 }
 
 void Modelo::desenharCaudaSuperior(FRAME frame) {
-//	glPushMatrix();
-//	glScalef(ART, ART, ART);
-//	glColor3f(1.0, 1.0, 0.0);
-//	if (frame == WIRE)
-//		glutWireSphere(1.0, 8, 8);
-//	else
-//		glutSolidSphere(1.0, 8, 8);
-//	glPopMatrix();
-
 	glTranslatef(0.0, 0.0, (CAUDA_SUP_COMP / 2));
 	glPushMatrix();
 	glScalef(CAUDA_SUP_LARG, CAUDA_SUP_ALT, CAUDA_SUP_COMP);
@@ -328,15 +264,6 @@ void Modelo::desenharCaudaSuperior(FRAME frame) {
 }
 
 void Modelo::desenharCaudaMeio(FRAME frame) {
-//	glPushMatrix();
-//	glScalef(ART, ART, ART);
-//	glColor3f(1.0, 1.0, 0.0);
-//	if (frame == WIRE)
-//		glutWireSphere(1.0, 8, 8);
-//	else
-//		glutSolidSphere(1.0, 8, 8);
-//	glPopMatrix();
-
 	glTranslatef(0.0, 0.0, (CAUDA_MEIO_COMP / 2));
 	glPushMatrix();
 	glScalef(CAUDA_MEIO_LARG, CAUDA_MEIO_ALT, CAUDA_MEIO_COMP);
@@ -349,15 +276,6 @@ void Modelo::desenharCaudaMeio(FRAME frame) {
 }
 
 void Modelo::desenharCaudaInferior(FRAME frame) {
-//	glPushMatrix();
-//	glScalef(ART, ART, ART);
-//	glColor3f(1.0, 1.0, 0.0);
-//	if (frame == WIRE)
-//		glutWireSphere(1.0, 8, 8);
-//	else
-//		glutSolidSphere(1.0, 8, 8);
-//	glPopMatrix();
-
 	glTranslatef(0.0, 0.0, (CAUDA_INF_COMP / 2));
 	glPushMatrix();
 	glScalef(CAUDA_INF_LARG, CAUDA_INF_ALT, CAUDA_INF_COMP);
@@ -370,19 +288,6 @@ void Modelo::desenharCaudaInferior(FRAME frame) {
 }
 
 void Modelo::desenharFerrao(FRAME frame) {
-//	glPushMatrix();
-//	glScalef(ART, ART, ART);
-//	glColor3f(1.0, 1.0, 0.0);
-//	if (frame == WIRE)
-//		glutWireSphere(1.0, 8, 8);
-//	else
-//		glutSolidSphere(1.0, 8, 8);
-//	glPopMatrix();
-
-	/*
-	 * Parte gambiarrada
-	 */
-
 	glTranslatef(0.0, 0.0, FERRAO_COMP/2);
 	glPushMatrix();
 	glScalef(FERRAO_LARG, FERRAO_ALT, FERRAO_COMP);

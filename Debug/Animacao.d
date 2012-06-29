@@ -1,4 +1,4 @@
-Animacao.d Animacao.o: ../Animacao.cpp ../Animacao.h ../Modelo.h
+Animacao.d: ../Animacao.cpp ../Animacao.h ../Modelo.h
 
 ../Animacao.h:
 
