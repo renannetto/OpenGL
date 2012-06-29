@@ -10,8 +10,14 @@
 
 #include "Modelo.h"
 
-#define FRAMESCAMINHADA 25
-#define FRAMESATAQUE 20
+static int FRAMESCAMINHADA = 15;
+static int FRAMESATAQUE = 10;
+static int flagPinca = 0;
+static int flagCauda = 0;
+static int flagAndar = 0;
+static int framesPinca = FRAMESATAQUE;
+static int framesCauda = FRAMESATAQUE;
+static int framesAndar = FRAMESCAMINHADA;
 
 class Animacao {
 public:
@@ -21,6 +27,8 @@ public:
 	void animarCauda();
 	void andar(bool frente);
 	void atacar();
+	void aumentarFrames();
+	void diminuirFrames();
 private:
 	Modelo *modelo;
 	bool atacando;

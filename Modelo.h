@@ -75,6 +75,7 @@ public:
 	void desenharModelo(int angX, int angY, FRAME frame);
 	void acrescentarAngulos(float angulos_add[12][3][3]);
 	void movimentoDoCorpo(float x, float y, float z);
+	void iniciarMedidas();
 private:
 	void desenharTorso(FRAME frame);
 	void desenharPata(PARTE_DO_CORPO parte, FRAME frame);

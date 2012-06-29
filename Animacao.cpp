@@ -17,8 +17,6 @@ Animacao::~Animacao() {
 
 void Animacao::animarPincas() {
 	if (atacando) {
-		static int frames = FRAMESATAQUE;
-		static int flag = 0;
 		float pinca_esq_sup, pinca_esq_meio, pinca_esq_inf, pinca_dir_sup,
 				pinca_dir_meio, pinca_dir_inf;
 
@@ -32,7 +30,7 @@ void Animacao::animarPincas() {
 			}
 		}
 
-		switch (flag) {
+		switch (flagPinca) {
 		case 0:
 			pinca_esq_sup = 20;
 			pinca_esq_meio = 40;
@@ -81,20 +79,17 @@ void Animacao::animarPincas() {
 
 		modelo->acrescentarAngulos(angulos_add);
 
-		frames--;
-		if (frames == 0) {
-			flag = (flag + 1) % 4;
-			frames = FRAMESATAQUE;
+		framesPinca--;
+		if (framesPinca == 0) {
+			flagPinca = (flagPinca + 1) % 4;
+			framesPinca = FRAMESATAQUE;
 		}
 	}
 }
 
 void Animacao::animarCauda() {
 	if (atacando) {
-		static int frames = FRAMESATAQUE;
-		static int flag = 0;
 		float cauda_sup, cauda_meio, cauda_inf, ferrao;
-
 		float angulos_add[12][3][3];
 
 		for (int i = 0; i < 12; i++) {
@@ -105,18 +100,18 @@ void Animacao::animarCauda() {
 			}
 		}
 
-		switch (flag) {
+		switch (flagCauda) {
 		case 0:
-			cauda_sup = 60;
-			cauda_meio = 65;
-			cauda_inf = 65;
-			ferrao = 50;
+			cauda_sup = 50;
+			cauda_meio = -15;
+			cauda_inf = -35;
+			ferrao = 20;
 			break;
 		case 1:
-			cauda_sup = -130;
-			cauda_meio = -55;
-			cauda_inf = -55;
-			ferrao = -50;
+			cauda_sup = -120;
+			cauda_meio = 25;
+			cauda_inf = 65;
+			ferrao = -30;
 			break;
 		case 2:
 			cauda_sup = 10;
@@ -127,8 +122,8 @@ void Animacao::animarCauda() {
 		case 3:
 			cauda_sup = 60;
 			cauda_meio = -10;
-			cauda_inf = -10;
-			ferrao = 0;
+			cauda_inf = -30;
+			ferrao = 10;
 			break;
 		}
 
@@ -139,20 +134,17 @@ void Animacao::animarCauda() {
 
 		modelo->acrescentarAngulos(angulos_add);
 
-		frames--;
-		if (frames == 0) {
-			if (flag == 3)
+		framesCauda--;
+		if (framesCauda == 0) {
+			if (flagCauda == 3)
 				atacando = false;
-			flag = (flag + 1) % 4;
-			frames = FRAMESATAQUE;
+			flagCauda = (flagCauda + 1) % 4;
+			framesCauda = FRAMESATAQUE;
 		}
 	}
 }
 
 void Animacao::andar(bool frente) {
-	static int frames = FRAMESCAMINHADA;
-	static int flag = 0;
-
 	int direcao;
 	if (frente)
 		direcao = 1;
@@ -201,7 +193,7 @@ void Animacao::andar(bool frente) {
 		}
 	}
 
-	switch (flag) {
+	switch (flagAndar) {
 	case 0:
 
 		pata_esq_1_sup_Y = -10;
@@ -378,18 +370,45 @@ void Animacao::andar(bool frente) {
 	modelo->acrescentarAngulos(angulos_add);
 	modelo->movimentoDoCorpo(0, direcao * base / FRAMESCAMINHADA, 0);
 
-	frames -= direcao;
+	framesAndar -= direcao;
 
-	if (frames == 0) {
-		flag = (flag + 1) % 4;
-		frames = FRAMESCAMINHADA;
-	} else if (frames == FRAMESCAMINHADA + 1) {
-		flag = (flag + 3) % 4;
-		frames = 1;
+	if (framesAndar == 0) {
+		flagAndar = (flagAndar + 1) % 4;
+		framesAndar = FRAMESCAMINHADA;
+	} else if (framesAndar == FRAMESCAMINHADA + 1) {
+		flagAndar = (flagAndar + 3) % 4;
+		framesAndar = 1;
 	}
 }
 
 void Animacao::atacar() {
 	atacando = true;
 }
+
+void Animacao::aumentarFrames() {
+	if(FRAMESATAQUE < 60){
+		FRAMESATAQUE += 5;
+		FRAMESCAMINHADA += 5;
+		flagPinca = 0;
+		flagCauda = 0;
+		flagAndar = 0;
+		framesPinca = FRAMESATAQUE;
+		framesCauda = FRAMESATAQUE;
+		framesAndar = FRAMESCAMINHADA;
+	}
+}
+
+void Animacao::diminuirFrames() {
+	if(FRAMESATAQUE > 5){
+		FRAMESATAQUE -= 5;
+		FRAMESCAMINHADA -= 5;
+		flagPinca = 0;
+		flagCauda = 0;
+		flagAndar = 0;
+		framesPinca = FRAMESATAQUE;
+		framesCauda = FRAMESATAQUE;
+		framesAndar = FRAMESCAMINHADA;
+	}
+}
+
 

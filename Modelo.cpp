@@ -13,64 +13,7 @@ Modelo::Modelo() {
 	posicao[Y] = 0;
 	posicao[Z] = -3;
 
-	for (int i = 0; i < 12; i++) {
-		for (int j = 0; j < 3; j++) {
-			for (int k = 0; k < 3; k++) {
-				angulos[i][j][k] = 0;
-			}
-		}
-	}
-
-	angulos[PATA_ESQ_1][0][Y] = 10;
-	angulos[PATA_DIR_1][0][Y] = 10;
-	angulos[PATA_ESQ_2][0][Y] = -10;
-	angulos[PATA_DIR_2][0][Y] = -10;
-	angulos[PATA_ESQ_3][0][Y] = 10;
-	angulos[PATA_DIR_3][0][Y] = 10;
-	angulos[PATA_ESQ_4][0][Y] = -10;
-	angulos[PATA_DIR_4][0][Y] = -10;
-
-	angulos[PATA_ESQ_1][0][Z] = -135;
-	angulos[PATA_DIR_1][0][Z] = 135;
-	angulos[PATA_ESQ_2][0][Z] = -135;
-	angulos[PATA_DIR_2][0][Z] = 135;
-	angulos[PATA_ESQ_3][0][Z] = -135;
-	angulos[PATA_DIR_3][0][Z] = 135;
-	angulos[PATA_ESQ_4][0][Z] = -135;
-	angulos[PATA_DIR_4][0][Z] = 135;
-
-	angulos[PATA_ESQ_1][1][Z] = 90;
-	angulos[PATA_DIR_1][1][Z] = -90;
-	angulos[PATA_ESQ_2][1][Z] = 90;
-	angulos[PATA_DIR_2][1][Z] = -90;
-	angulos[PATA_ESQ_3][1][Z] = 90;
-	angulos[PATA_DIR_3][1][Z] = -90;
-	angulos[PATA_ESQ_4][1][Z] = 90;
-	angulos[PATA_DIR_4][1][Z] = -90;
-
-	angulos[PATA_ESQ_1][2][Z] = 45;
-	angulos[PATA_DIR_1][2][Z] = -45;
-	angulos[PATA_ESQ_2][2][Z] = 45;
-	angulos[PATA_DIR_2][2][Z] = -45;
-	angulos[PATA_ESQ_3][2][Z] = 45;
-	angulos[PATA_DIR_3][2][Z] = -45;
-	angulos[PATA_ESQ_4][2][Z] = 45;
-	angulos[PATA_DIR_4][2][Z] = -45;
-
-	angulos[PINCA_ESQ][0][Y] = 45;
-	angulos[PINCA_DIR][0][Y] = -45;
-
-	angulos[PINCA_ESQ][1][Y] = -45;
-	angulos[PINCA_DIR][1][Y] = 45;
-
-	angulos[PINCA_ESQ][2][Y] = -45;
-	angulos[PINCA_DIR][2][Y] = 45;
-
-	angulos[CAUDA][0][X] = -70;
-	angulos[CAUDA][1][X] = -50;
-	angulos[CAUDA][2][X] = -50;
-
-	angulos[FERRAO][0][X] = -45;
+	iniciarMedidas();
 }
 
 Modelo::~Modelo() {
@@ -320,5 +263,67 @@ void Modelo::movimentoDoCorpo(float x, float y, float z) {
 	posicao[X] += x;
 	posicao[Y] += y;
 	posicao[Z] += z;
+}
+
+
+void Modelo::iniciarMedidas() {
+	for (int i = 0; i < 12; i++) {
+			for (int j = 0; j < 3; j++) {
+				for (int k = 0; k < 3; k++) {
+					angulos[i][j][k] = 0;
+				}
+			}
+		}
+
+		angulos[PATA_ESQ_1][0][Y] = 10;
+		angulos[PATA_DIR_1][0][Y] = 10;
+		angulos[PATA_ESQ_2][0][Y] = -10;
+		angulos[PATA_DIR_2][0][Y] = -10;
+		angulos[PATA_ESQ_3][0][Y] = 10;
+		angulos[PATA_DIR_3][0][Y] = 10;
+		angulos[PATA_ESQ_4][0][Y] = -10;
+		angulos[PATA_DIR_4][0][Y] = -10;
+
+		angulos[PATA_ESQ_1][0][Z] = -135;
+		angulos[PATA_DIR_1][0][Z] = 135;
+		angulos[PATA_ESQ_2][0][Z] = -135;
+		angulos[PATA_DIR_2][0][Z] = 135;
+		angulos[PATA_ESQ_3][0][Z] = -135;
+		angulos[PATA_DIR_3][0][Z] = 135;
+		angulos[PATA_ESQ_4][0][Z] = -135;
+		angulos[PATA_DIR_4][0][Z] = 135;
+
+		angulos[PATA_ESQ_1][1][Z] = 90;
+		angulos[PATA_DIR_1][1][Z] = -90;
+		angulos[PATA_ESQ_2][1][Z] = 90;
+		angulos[PATA_DIR_2][1][Z] = -90;
+		angulos[PATA_ESQ_3][1][Z] = 90;
+		angulos[PATA_DIR_3][1][Z] = -90;
+		angulos[PATA_ESQ_4][1][Z] = 90;
+		angulos[PATA_DIR_4][1][Z] = -90;
+
+		angulos[PATA_ESQ_1][2][Z] = 45;
+		angulos[PATA_DIR_1][2][Z] = -45;
+		angulos[PATA_ESQ_2][2][Z] = 45;
+		angulos[PATA_DIR_2][2][Z] = -45;
+		angulos[PATA_ESQ_3][2][Z] = 45;
+		angulos[PATA_DIR_3][2][Z] = -45;
+		angulos[PATA_ESQ_4][2][Z] = 45;
+		angulos[PATA_DIR_4][2][Z] = -45;
+
+		angulos[PINCA_ESQ][0][Y] = 45;
+		angulos[PINCA_DIR][0][Y] = -45;
+
+		angulos[PINCA_ESQ][1][Y] = -45;
+		angulos[PINCA_DIR][1][Y] = 45;
+
+		angulos[PINCA_ESQ][2][Y] = -45;
+		angulos[PINCA_DIR][2][Y] = 45;
+
+		angulos[CAUDA][0][X] = -70;
+		angulos[CAUDA][1][X] = -50;
+		angulos[CAUDA][2][X] = -50;
+
+		angulos[FERRAO][0][X] = -45;
 }
 

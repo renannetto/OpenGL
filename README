@@ -1,0 +1,10 @@
+Comandos:
+
+w,a,s,d = movimentação da câmera
+1 = caminhar/parar
+2 = solid/wireframe
+i = caminhar para a frente
+k = caminhar para trás
+espaço = atacar
+- = reduzir a velocidade de animação
++ = aumentar a velocidade de animação

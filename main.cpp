@@ -7,6 +7,7 @@
 #include "Animacao.h"
 
 Modelo modelo;
+FRAME frame = SOLID;
 Animacao animacao = Animacao(&modelo);
 
 int angX = 0;
@@ -34,7 +35,7 @@ void draw() {
 
 	setLight0();
 
-	modelo.desenharModelo(angX, angY, SOLID);
+	modelo.desenharModelo(angX, angY, frame);
 
 	glutSwapBuffers();
 }
@@ -43,9 +44,9 @@ void update() {
 
 	animacao.animarPincas();
 	animacao.animarCauda();
-	if(andandoParaFrente)
+	if (andandoParaFrente)
 		animacao.andar(true);
-	else if(andandoParaTras)
+	else if (andandoParaTras)
 		animacao.andar(false);
 
 	glutPostRedisplay();
@@ -76,6 +77,20 @@ void keyPressed(unsigned char key, int x, int y) {
 		break;
 	case '1':
 		andandoParaFrente = !andandoParaFrente;
+		break;
+	case '2':
+		if (frame == SOLID)
+			frame = WIRE;
+		else if (frame == WIRE)
+			frame = SOLID;
+		break;
+	case '+':
+		animacao.diminuirFrames();
+		modelo.iniciarMedidas();
+		break;
+	case '-':
+		animacao.aumentarFrames();
+		modelo.iniciarMedidas();
 		break;
 	}
 

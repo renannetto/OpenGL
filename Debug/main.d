@@ -1,4 +1,4 @@
-main.d: ../main.cpp ../Animacao.h ../Modelo.h
+main.d main.o: ../main.cpp ../Animacao.h ../Modelo.h
 
 ../Animacao.h:
 
